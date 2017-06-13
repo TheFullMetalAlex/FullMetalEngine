@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DebugLog.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DebugLog.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{172671AF-D981-4CFE-A317-D023E2287284}</ProjectGuid>
