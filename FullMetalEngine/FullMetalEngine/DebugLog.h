@@ -5,30 +5,49 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+
+//Singleton class for printing to output window (debugging tool)
 class DebugLog
 {
-public:
+private:
 
 	//Big 4
-	DebugLog() = delete;
-	DebugLog(const DebugLog& other) = delete;
-	DebugLog& operator=(const DebugLog& other) = delete;
-	~DebugLog() = delete;
+	DebugLog() {};
+	DebugLog(const DebugLog& other) {};
+	DebugLog& operator=(const DebugLog& other) {};
+	~DebugLog() {};
+
+	//pointer to self
+	static DebugLog *self;
+
+	//Instance Creation
+	static DebugLog& Instance()
+	{
+		if (!self)
+		{
+			self = new DebugLog();
+		}
+
+		return *self;
+	}
+
+	char DebugBuff[256];
+	void PrivateDebugOut(char* outMessage, va_list args);
+
+public:
 
 	//Reference on using variable arguments using ellipses http://www.cprogramming.com/tutorial/c/lesson17.html
 	//Apparently this is how printf works
 
-	static char DebugBuff[256];
-
 	//Print a message to the output window
-	static void DebugOut(const char* outMessage, ...)
+
+	static void DebugOut(char* outMessage, ...)
 	{
 		va_list args;
 		va_start(args, outMessage);
-		vsprintf_s(DebugBuff, outMessage, args);
-		OutputDebugString(DebugBuff);
+
+		Instance().PrivateDebugOut(outMessage, args);
 	}
-private:
 
 };
 

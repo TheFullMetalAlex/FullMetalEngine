@@ -1,16 +1,9 @@
 #include "DebugLog.h"
 
+DebugLog* DebugLog::self = nullptr;
 
-//void DebugLog::DebugOut(const char * outMessage)
-//{
-//	//OutputDebugString(outMessage);
-//	char szBuff[1024];
-//	va_list arg;
-//	va_start(arg, outMessage);
-//	_vsnprintf(szBuff, sizeof(szBuff), outMessage, arg);
-//	va_end(arg);
-//
-//	OutputDebugString(szBuff);
-//}
-
-
+void DebugLog::PrivateDebugOut(char * outMessage, va_list args)
+{
+	vsprintf_s(DebugBuff, outMessage, args);
+	OutputDebugString(DebugBuff);
+}
