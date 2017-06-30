@@ -6,6 +6,10 @@
 #include <stdarg.h>
 
 
+
+
+
+
 //Singleton class for printing to output window (debugging tool)
 class DebugLog
 {
@@ -31,8 +35,8 @@ private:
 		return *self;
 	}
 
-	char DebugBuff[256];
-	void PrivateDebugOut(char* outMessage, va_list args);
+
+	void PrivateDebugOut(const char* outMessage, va_list args);
 
 public:
 
